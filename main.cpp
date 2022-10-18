@@ -3,7 +3,8 @@
 
 using namespace std;
 void regle();
-void affichage(std::vector<std::vector<int>>& tab);
+void affichage(std::vector<std::vector<int>>& tab, const int& hauteur, const int&
+largeur);
 
 int main() {
     vector<vector<int>> tableau{{0,0,0,0,0,0,0},
@@ -12,9 +13,9 @@ int main() {
                                 {0,0,0,0,0,0,0},
                                 {0,0,0,0,0,0,0},
                                 {0,0,0,0,0,0,0}};
-    regle();
+    //regle();
 
-
+    affichage(tableau, 6,7);
 
     return 0;
 }
@@ -31,8 +32,16 @@ void regle(){
         <<"la partie est declaree nulle."<<endl;
 
 }
-void affichage(std::vector<std::vector<int>>& tab){
-    for()
+void affichage(std::vector<std::vector<int>>& tab, const int& hauteur, const int&
+largeur){
+    for(int i = 0; i < hauteur; ++i){
+        cout << "+---+---+---+---+---+---+---+" << endl << "|";
+        for(int j = 0; j < largeur;++j){
+            cout << " " << tab[i][j] << " " << "|";
+        }
+        cout << endl;
+    }
+    cout << "+---+---+---+---+---+---+---+" << endl;
 
 }
 
