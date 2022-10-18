@@ -5,17 +5,11 @@ using namespace std;
 void regle();
 void affichage(std::vector<std::vector<int>>& tab, const int& hauteur, const int&
 largeur);
+void puissance4();
 
 int main() {
-    vector<vector<int>> tableau{{0,0,0,0,0,0,0},
-                                {0,0,0,0,0,0,0},
-                                {0,0,0,0,0,0,0},
-                                {0,0,0,0,0,0,0},
-                                {0,0,0,0,0,0,0},
-                                {0,0,0,0,0,0,0}};
     //regle();
 
-    affichage(tableau, 6,7);
 
     return 0;
 }
@@ -43,6 +37,14 @@ largeur){
     }
     cout << "+---+---+---+---+---+---+---+" << endl;
 
+}
+
+void puissance4(const int& ligne, const int& colonne){
+    vector<vector<int>> tableau(ligne, vector<int>(colonne));
+    /*for(){
+
+    }*/
+    affichage(tableau, ligne,colonne);
 }
 
 
