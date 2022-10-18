@@ -3,12 +3,15 @@
 
 using namespace std;
 void regle();
+void affichage(std::vector<std::vector<int>>& tab);
 
 int main() {
-    vector<vector<int>> tableau{{0,0,0,0},
-                                {0,0,0,0},
-                                {0,0,0,0},
-                                {0,0,0,0},};
+    vector<vector<int>> tableau{{0,0,0,0,0,0,0},
+                                {0,0,0,0,0,0,0},
+                                {0,0,0,0,0,0,0},
+                                {0,0,0,0,0,0,0},
+                                {0,0,0,0,0,0,0},
+                                {0,0,0,0,0,0,0}};
     regle();
 
 
@@ -26,6 +29,10 @@ void regle(){
         <<"consecutif d'au moins quatre pions de sa couleur. "<<endl
         <<"Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n'a realise un tel alignement,"<<endl
         <<"la partie est declaree nulle."<<endl;
+
+}
+void affichage(std::vector<std::vector<int>>& tab){
+    for()
 
 }
 
