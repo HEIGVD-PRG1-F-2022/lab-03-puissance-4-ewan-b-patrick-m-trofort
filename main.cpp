@@ -58,11 +58,29 @@ void puissance4(const int& ligne, const int& colonne){
 
         affichage(tab, ligne,colonne);
         //controle de victoire joueur 1;
+        //Attention bordure puissance 4
         for(int i = hauteur; i >= 0; --i){
-            for(int j = colonne; j >= 0; --j)
+            for(int j = colonne-1; j >= 0; --j)
             {
                 if(tab[i][j] == 0){
                     continue; // retourne à la 2 ème boucle for
+                }
+                if(tab[i][j] + tab[i][j-1] + tab[i][j-2] + tab[i][j-3] == 4){
+                    enCours = false;
+                    cout<<"Victoire du J1 !"<<endl;
+
+                }
+                else if(tab[i][j] + tab[i-1][j-1] + tab[i-2][j-2] + tab[i-3][j-3] == 4){
+                    enCours = false;
+                    cout<<"Victoire du J1 !"<<endl;
+                }
+                else if(tab[i][j] + tab[i-1][j] + tab[i-2][j] + tab[i-3][j] == 4){
+                    enCours = false;
+                    cout<<"Victoire du J1 !"<<endl;
+                }
+                else if(tab[i][j] + tab[i-1][j+1] + tab[i-2][j+2] + tab[i-3][j+3] == 4){
+                    enCours = false;
+                    cout<<"Victoire du J1 !"<<endl;
                 }
                 //tester si le continue marche avec un cout plus tard
             }
@@ -80,7 +98,35 @@ void puissance4(const int& ligne, const int& colonne){
             }
         }
     }
-    //affichage(tableau, ligne,colonne);
+    affichage(tab, ligne,colonne);
+
+    for(int i = hauteur; i >= 0; --i){
+        for(int j = colonne; j >= 0; --j)
+        {
+            if(tab[i][j] == 0){
+                continue; // retourne à la 2 ème boucle for
+            }
+            if(tab[i][j] + tab[i][j-1] + tab[i][j-2] + tab[i][j-3] == 8){
+                enCours = false;
+                cout<<"Victoire du J1 !"<<endl;
+
+            }
+
+            else if(tab[i][j] + tab[i-1][j-1] + tab[i-2][j-2] + tab[i-3][j-3] == 8){
+                enCours = false;
+                cout<<"Victoire du J1 !"<<endl;
+            }
+            else if(tab[i][j] + tab[i-1][j] + tab[i-2][j] + tab[i-3][j] == 8){
+                enCours = false;
+                cout<<"Victoire du J1 !"<<endl;
+            }
+            else if(tab[i][j] + tab[i-1][j+1] + tab[i-2][j+2] + tab[i-3][j+3] == 8){
+                enCours = false;
+                cout<<"Victoire du J1 !"<<endl;
+            }
+            //tester si le continue marche avec un cout plus tard
+        }
+    }
 }
 
 
