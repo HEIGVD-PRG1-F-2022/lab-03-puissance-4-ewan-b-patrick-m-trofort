@@ -5,12 +5,14 @@ using namespace std;
 void regle();
 void affichage(std::vector<std::vector<int>>& tab, const int& hauteur, const int&
 largeur);
-void puissance4();
+void puissance4(const int& ligne, const int& colonne);
+
+
 
 int main() {
     //regle();
-
-
+    int ligne = 6, colonne = 7;
+    puissance4(ligne, colonne);
     return 0;
 }
 
@@ -40,11 +42,48 @@ largeur){
 }
 
 void puissance4(const int& ligne, const int& colonne){
-    vector<vector<int>> tableau(ligne, vector<int>(colonne));
-    /*for(){
+    vector<vector<int>> tab(ligne, vector<int>(colonne));
+    bool enCours = true;
+    int joueur1, joueur2;
+    const int hauteur = tab.size()-1;
+    while(enCours){
+        //position choisi par le joueur 1
+        cin >> joueur1;
+        for(int i = 0; i < hauteur; ++i){
+            if(tab[hauteur - i][joueur1 - 1] == 0){
+                tab[hauteur - i][joueur1 - 1] = 1;
+                break;
+            }
+        }
 
-    }*/
-    affichage(tableau, ligne,colonne);
+        affichage(tab, ligne,colonne);
+        //controle de victoire joueur 1;
+        for(int i = hauteur; i >= 0; --i){
+            for(int j = colonne; j >= 0; --j)
+            {
+                if(tab[i][j] == 0){
+                    continue; // retourne à la 2 ème boucle for
+                }
+                //tester si le continue marche avec un cout plus tard
+            }
+        }
+
+
+
+
+        //position choisi par le joueur 2
+        cin >> joueur2;
+        for(int i = 0; i < hauteur; ++i){
+            if(tab[hauteur - i][joueur2 - 1] == 0){
+                tab[hauteur - i][joueur2 - 1] = 2;
+                break;
+            }
+        }
+    }
+    //affichage(tableau, ligne,colonne);
 }
+
+
+
 
 
