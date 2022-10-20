@@ -6,6 +6,8 @@ void regle();
 void affichage(std::vector<std::vector<int>>& tab, const int& hauteur, const int&
 largeur);
 void puissance4(const int& ligne, const int& colonne);
+int verifVictoire(int joueur, int hauteur, int colonne,vector<vector<int>> tab);
+void entreeJoueur(int joueur,int hauteur,vector<vector<int>>& tab);
 
 
 
@@ -28,6 +30,7 @@ void regle(){
         <<"la partie est declaree nulle."<<endl;
 
 }
+
 void affichage(std::vector<std::vector<int>>& tab, const int& hauteur, const int&
 largeur){
     for(int i = 0; i < hauteur; ++i){
@@ -42,91 +45,81 @@ largeur){
 }
 
 void puissance4(const int& ligne, const int& colonne){
+
     vector<vector<int>> tab(ligne, vector<int>(colonne));
-    bool enCours = true;
-    int joueur1, joueur2;
+
+    int joueur1 = 1, joueur2 = 2;
+
     const int hauteur = tab.size()-1;
-    while(enCours){
-        //position choisi par le joueur 1
-        cin >> joueur1;
-        for(int i = 0; i < hauteur; ++i){
-            if(tab[hauteur - i][joueur1 - 1] == 0){
-                tab[hauteur - i][joueur1 - 1] = 1;
-                break;
-            }
-        }
+
+    while(true){
+
+        //tour du J1
+        entreeJoueur(joueur1,hauteur,tab);
 
         affichage(tab, ligne,colonne);
-        //controle de victoire joueur 1;
-        //Attention bordure puissance 4
-        for(int i = hauteur; i >= 0; --i){
-            for(int j = colonne-1; j >= 0; --j)
-            {
-                if(tab[i][j] == 0){
-                    continue; // retourne à la 2 ème boucle for
-                }
-                if(tab[i][j] + tab[i][j-1] + tab[i][j-2] + tab[i][j-3] == 4){
-                    enCours = false;
-                    cout<<"Victoire du J1 !"<<endl;
 
-                }
-                else if(tab[i][j] + tab[i-1][j-1] + tab[i-2][j-2] + tab[i-3][j-3] == 4){
-                    enCours = false;
-                    cout<<"Victoire du J1 !"<<endl;
-                }
-                else if(tab[i][j] + tab[i-1][j] + tab[i-2][j] + tab[i-3][j] == 4){
-                    enCours = false;
-                    cout<<"Victoire du J1 !"<<endl;
-                }
-                else if(tab[i][j] + tab[i-1][j+1] + tab[i-2][j+2] + tab[i-3][j+3] == 4){
-                    enCours = false;
-                    cout<<"Victoire du J1 !"<<endl;
-                }
-                //tester si le continue marche avec un cout plus tard
-            }
+        if(verifVictoire(joueur1,hauteur,colonne,tab)){
+            break;
         }
 
+        //tour du J2
+        entreeJoueur(joueur2,hauteur,tab);
 
+        affichage(tab, ligne,colonne);
 
-
-        //position choisi par le joueur 2
-        cin >> joueur2;
-        for(int i = 0; i < hauteur; ++i){
-            if(tab[hauteur - i][joueur2 - 1] == 0){
-                tab[hauteur - i][joueur2 - 1] = 2;
-                break;
-            }
+        if(verifVictoire(joueur2,hauteur,colonne,tab)){
+            break;
         }
     }
-    affichage(tab, ligne,colonne);
 
+}
+
+void entreeJoueur(int joueur,int hauteur,vector<vector<int>>& tab){
+    cout<<"J"<<joueur<<" a votre tour ! selectionner une colonne :";
+    int entree;
+    cin >> entree;
+
+    for(int i = 0; i < hauteur; ++i){
+        if(tab[hauteur - i][entree - 1] == 0){
+            tab[hauteur - i][entree - 1] = joueur;
+            break;
+        }
+    }
+}
+
+
+int verifVictoire(int joueur, int hauteur, int colonne,vector<vector<int>> tab){
+
+    int fin = 0;
     for(int i = hauteur; i >= 0; --i){
-        for(int j = colonne; j >= 0; --j)
+        for(int j = colonne-1; j >= 0; --j)
         {
             if(tab[i][j] == 0){
                 continue; // retourne à la 2 ème boucle for
             }
-            if(tab[i][j] + tab[i][j-1] + tab[i][j-2] + tab[i][j-3] == 8){
-                enCours = false;
-                cout<<"Victoire du J1 !"<<endl;
+            if(tab[i][j] & tab[i][j-1] & tab[i][j-2] & tab[i][j-3] == joueur){
+                fin = 1;
+                cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
 
             }
-
-            else if(tab[i][j] + tab[i-1][j-1] + tab[i-2][j-2] + tab[i-3][j-3] == 8){
-                enCours = false;
-                cout<<"Victoire du J1 !"<<endl;
+            else if(tab[i][j] & tab[i-1][j-1] & tab[i-2][j-2] & tab[i-3][j-3] == joueur){
+                fin = 1;
+                cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
             }
-            else if(tab[i][j] + tab[i-1][j] + tab[i-2][j] + tab[i-3][j] == 8){
-                enCours = false;
-                cout<<"Victoire du J1 !"<<endl;
+            else if(tab[i][j] & tab[i-1][j] & tab[i-2][j] & tab[i-3][j] == joueur){
+                fin = 1;
+                cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
             }
-            else if(tab[i][j] + tab[i-1][j+1] + tab[i-2][j+2] + tab[i-3][j+3] == 8){
-                enCours = false;
-                cout<<"Victoire du J1 !"<<endl;
+            else if(tab[i][j] & tab[i-1][j+1] & tab[i-2][j+2] & tab[i-3][j+3] == joueur){
+                fin = 1;
+                cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
             }
             //tester si le continue marche avec un cout plus tard
         }
     }
+    return fin;
+
 }
 
 
