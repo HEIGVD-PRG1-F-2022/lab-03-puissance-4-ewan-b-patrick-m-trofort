@@ -1,7 +1,16 @@
-//
-// Created by ewanb on 20.10.2022.
-//
+/*
+-----------------------------------------------------------------------------------
+Nom du fichier  : puissance4.cpp
+Auteur(s)       : Ewan Bloechle, Patrick Maillard
+Date creation   : 20.10.2022
 
+Description     : Contient les définitions de fonctions utilisées
+
+Remarque(s)     :
+
+Compilateur     : Mingw-w64 g++ 11.2.0
+-----------------------------------------------------------------------------------
+*/
 #include "puissance4.h"
 
 void regle() {
