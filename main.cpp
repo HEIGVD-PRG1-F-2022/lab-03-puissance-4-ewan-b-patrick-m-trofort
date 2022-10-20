@@ -1,3 +1,17 @@
+/*
+-----------------------------------------------------------------------------------
+Nom du fichier  : main.cpp
+Auteur(s)       : Ewan Bloechle, Patrick Maillard
+Date creation   : 18.10.2022
+
+Description     : programme permettant joueur au puissance 4 à 2 joueur
+
+Remarque(s)     :
+
+Compilateur     : Mingw-w64 g++ 11.2.0
+-----------------------------------------------------------------------------------
+*/
+
 #include <iostream>
 #include <vector>
 
@@ -76,7 +90,7 @@ void puissance4(const int& ligne, const int& colonne){
 }
 
 void entreeJoueur(int joueur,int hauteur,vector<vector<int>>& tab){
-    cout<<"J"<<joueur<<" a votre tour ! selectionner une colonne :";
+    //cout<<"J"<<joueur<<" a votre tour ! selectionner une colonne :";
     int entree;
     cin >> entree;
 
@@ -90,7 +104,9 @@ void entreeJoueur(int joueur,int hauteur,vector<vector<int>>& tab){
 
 
 int verifVictoire(int joueur, int hauteur, int colonne,vector<vector<int>> tab){
+    if(joueur == 1){
 
+    }
     int fin = 0;
     for(int i = hauteur; i >= 0; --i){
         for(int j = colonne-1; j >= 0; --j)
@@ -98,26 +114,29 @@ int verifVictoire(int joueur, int hauteur, int colonne,vector<vector<int>> tab){
             if(tab[i][j] == 0){
                 continue; // retourne à la 2 ème boucle for
             }
-            if(tab[i][j] & tab[i][j-1] & tab[i][j-2] & tab[i][j-3] == joueur){
+            if((i==0 && j>3) &&(tab[i][j] & tab[i][j-1] & tab[i][j-2] & tab[i][j-3] == joueur)){//verification horizontal
                 fin = 1;
                 cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
 
             }
-            else if(tab[i][j] & tab[i-1][j-1] & tab[i-2][j-2] & tab[i-3][j-3] == joueur){
+            else if((i > 3) && (tab[i][j] & tab[i-1][j-1] & tab[i-2][j-2] & tab[i-3][j-3] == joueur)){//verification diagonal gauche
                 fin = 1;
                 cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
             }
-            else if(tab[i][j] & tab[i-1][j] & tab[i-2][j] & tab[i-3][j] == joueur){
+            else if((i > 3) && (tab[i][j] & tab[i-1][j] & tab[i-2][j] & tab[i-3][j] == joueur)){//verification vertical
                 fin = 1;
                 cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
             }
-            else if(tab[i][j] & tab[i-1][j+1] & tab[i-2][j+2] & tab[i-3][j+3] == joueur){
+            else if((i > 3) && (tab[i][j] & tab[i-1][j+1] & tab[i-2][j+2] & tab[i-3][j+3] == joueur)){//verification diagonal droite
                 fin = 1;
                 cout<<"Victoire du joueur "<<joueur<<" !"<<endl;
             }
-            //tester si le continue marche avec un cout plus tard
+
+            cout<<(tab[i][j] & tab[i-1][j+1] & tab[i-2][j+2] & tab[i-3][j+3]);
+
         }
     }
+
     return fin;
 
 }
