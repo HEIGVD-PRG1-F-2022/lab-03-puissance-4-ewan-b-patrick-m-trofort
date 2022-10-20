@@ -12,7 +12,7 @@ using namespace std;
 
 void regle();
 
-void affichage(std::vector<std::vector<int>> &tab, const int &hauteur, const int &
+void affichage(vector<vector<int>> &tab, const int &hauteur, const int &
 largeur);
 
 void puissance4(const int &ligne, const int &colonne);
